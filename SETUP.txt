@@ -1,0 +1,13 @@
+SETUP
+1.ADD LARAVEL PROJECT
+-composer create-project laravel/laravel example-app
+2.cd to the project routes 
+-git init
+3. install concurrently 
+-npm install concurrently then add this to the package.json
+    "install:app": "concurrently \"cd C:/laragon/www/Ecommerce-Fullstack/LaShopee-Backend && composer install\"",
+    "start": "concurrently \"cd C:/laragon/www/Ecommerce-Fullstack/LaShopee-Backend && php artisan serve\""
+una add ang path sa composer then ang dir sa project
+4. run using npm run start / npm start then maapil na ug run ang backend
+5. php artisan make:model Category -mfs 
+-mfs means migration, factory, seeder 

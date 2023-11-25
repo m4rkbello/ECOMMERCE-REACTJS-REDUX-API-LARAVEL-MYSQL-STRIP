@@ -1,0 +1,16 @@
+{
+  "name": "ecommerce-fullstack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install:app": "concurrently \"cd C:/laragon/www/Ecommerce-Fullstack/LaShopee-Backend && composer install\"",
+    "start": "concurrently \"cd C:/laragon/www/Ecommerce-Fullstack/LaShopee-Backend && php artisan serve\""
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
