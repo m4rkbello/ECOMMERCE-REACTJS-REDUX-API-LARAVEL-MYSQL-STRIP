@@ -8,6 +8,33 @@ SETUP
     "install:app": "concurrently \"cd C:/laragon/www/Ecommerce-Fullstack/LaShopee-Backend && composer install\"",
     "start": "concurrently \"cd C:/laragon/www/Ecommerce-Fullstack/LaShopee-Backend && php artisan serve\""
 una add ang path sa composer then ang dir sa project
-4. run using npm run start / npm start then maapil na ug run ang backend
-5. php artisan make:model Category -mfs 
+4. .env edit the
+-database_connection:
+-database_host:
+-dabase_port:
+-database_username:
+_database_password:
+ug sa config/db
+   'mysql' => [
+            'driver' => 'mysql',
+            'url' => env('DATABASE_URL'),
+            'host' => env('DB_HOST', '127.0.0.1'),
+            'port' => env('DB_PORT', '3306'),
+            'database' => env('DB_DATABASE', 'db_lazshopee'),
+            'username' => env('DB_USERNAME', 'admin'),
+            'password' => env('DB_PASSWORD', 'admin'),
+            'unix_socket' => env('DB_SOCKET', ''),
+            'charset' => 'utf8',
+            'collation' => 'utf8_unicode_ci',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'strict' => true,
+            'engine' => null,
+            'options' => extension_loaded('pdo_mysql') ? array_filter([
+                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+            ]) : [],
+        ],
+
+5. run using npm run start / npm start then maapil na ug run ang backend
+6. php artisan make:model Category -mfs 
 -mfs means migration, factory, seeder 
