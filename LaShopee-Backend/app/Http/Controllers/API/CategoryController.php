@@ -109,7 +109,7 @@ class CategoryController extends Controller
         if ($request->hasFile('avatar')) {
             $avatar = $request->file('avatar');
             $filename = time() . '.' . $avatar->getClientOriginalExtension();
-            $avatar->storePublicly('public/categories_img');
+            $avatar->storePublicly('public/categories');
             $category->avatar = $filename;
         }        
 
