@@ -37,4 +37,25 @@ ug sa config/db
 
 5. run using npm run start / npm start then maapil na ug run ang backend
 6. php artisan make:model Category -mfs 
--mfs means migration, factory, seeder 
+-mfs means migration, factory, seeder
+8. eloquent e migrate ang code 
+-php artisan migrate
+9. php artisan create controller, 
+10. sulod sa rootfolder e mag install ug frontend
+-lashopee-frontend gamit ang create-react-app or cra
+npx create-react-app lashopee-frontend
+11. install ang depencies 
+- npm redux, react-redux, react-router-dom, @reduxjs/toolkit, redux-thunk ug ang 
+12. install api gamit ang AXIOS or pwede pud fetchAPI
+-npm axios api 
+13. e run ang frontend ug backend gamit
+- npm install --save-dev laravel-mix
+"scripts": {
+  "start": "npm run watch",
+  "watch": "concurrently \"npm run serve:backend\" \"npm run serve:frontend\"",
+  "serve:backend": "cd C:/laragon/www/Ecommerce-Fullstack/LaShopee-Backend && php artisan serve",
+  "serve:frontend": "cd C:/laragon/www/Ecommerce-Fullstack/lashopee-frontend && npm run serve"
+}
+14.
+10. cd lashopee-frontend > npm i bootstrap@5.3.0
+11. install ug 
