@@ -29,71 +29,57 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
     //  */
-    // public function store(Request $request)
-    // {
-        
-    //     $validated = $request->validated([
-    //         'name' => 'required|string',
-    //         'description' => 'required|string',
-    //         'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
-    //     ]);
 
-    //     $category = new Category();
-    //     $category->name = $validated['name'];
-    //     $category->description = $validated['description'];
-       
-    //     if($request->hasFile('avatar')){
-    //         $avatar = $request->file('avatar');
-    //         $filename = time() .'.'. $avatar->getClientOriginalExtension();
-    //         $avatar->storeAs('public/categories', $filename);
-    //         $category->avatar = $filename;
-    //     }
-
-    //     $category->save();
-
-    //     return response()->json([
-    //         'success' => true,
-    //         'message'=> 'Category created successfully!',
-    //         'category' => $category
-    //     ], 201);
     
-    // }
-
-    //GANA PERO GI COMMENT!
     // public function store(Request $request)
     // {
     //     $validated = $request->validate([
-    //         'name' => 'required|string|unique:categories', // Add unique validation rule
+    //         'name' => 'required|string|unique:categories',
     //         'description' => 'required|string',
-    //         'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Validate the uploaded image
+    //         'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
     //     ], [
     //         'name.unique' => 'This name has already been taken.',
     //     ]);
+    //     // $validated = $request->validate();
+
+
 
     //     $category = new Category();
     //     $category->name = $validated['name'];
     //     $category->description = $validated['description'];
-       
 
     //     if ($request->hasFile('avatar')) {
     //         $avatar = $request->file('avatar');
     //         $filename = time() . '.' . $avatar->getClientOriginalExtension();
-    //         $avatar->storeAs('public/categories_img', $filename);
+    //         $avatar->storePublicly('public/categories');
     //         $category->avatar = $filename;
-    //     }
+    //     }        
 
-    //     $category->save();
-
+    //     // if($category->save());
+    //     // return response()->json([
+    //     //     'success' => true,
+    //     //     'message' => 'Category created successfully!',
+    //     //     'category' => $category,
+    //     // ], 201);
+    //     if($category->save()){
     //     return response()->json([
     //         'success' => true,
     //         'message' => 'Category created successfully!',
     //         'category' => $category,
     //     ], 201);
+
+    //     }else{
+    //         return response()->json([
+    //             'error' => true,
+    //             'message' => 'Failed to saved category!',
+       
+    //         ], 500);
+    //     }
     // }
 
-    
     public function store(Request $request)
-    {
+{
+    try {
         $validated = $request->validate([
             'name' => 'required|string|unique:categories',
             'description' => 'required|string',
@@ -111,18 +97,30 @@ class CategoryController extends Controller
             $filename = time() . '.' . $avatar->getClientOriginalExtension();
             $avatar->storePublicly('public/categories');
             $category->avatar = $filename;
-        }        
+        } else {
+            return response()->json([
+                'error' => 'Avatar file is required!',
+            ], 400);
+        }
 
-        $category->save();
-
+        if ($category->save()) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Category created successfully!',
+                'category' => $category,
+            ], 201);
+        } else {
+            return response()->json([
+                'error' => 'Failed to save the category.',
+            ], 500);
+        }
+    } catch (ValidationException $e) {
+        // Return a JSON response with a 422 status code and validation error messages
         return response()->json([
-            'success' => true,
-            'message' => 'Category created successfully!',
-            'category' => $category,
-        ], 201);
+            'error' => $e->errors(),
+        ], 422);
     }
-
-
+}
 
     /**
      * Display the specified resource.
@@ -130,13 +128,14 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+
+     public function show($id)
     {
         $category=Category::with('products')->where('id', $id)->first();
         if(!$category){
             return response()->json([
-                'error' => 'Category id has not found!' 
-            ]);
+                'error' => 'Category not found!' 
+            ], 404);
         }
         return response()->json($category);
 

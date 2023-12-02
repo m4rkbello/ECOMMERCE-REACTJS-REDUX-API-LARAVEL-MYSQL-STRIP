@@ -9,6 +9,7 @@ class Category extends Model
 {
     use HasFactory;
 
+    //kuhaon ang name sa avatar 
     public function getAvatarAttribute($avatar){
         return $avatar ? asset("/storage/categories/".$avatar) : null;
     }
