@@ -22,7 +22,7 @@ class CreateProductsTable extends Migration
             $table->string('avatar');
             $table->timestamps();
 
-            //for foreignkey niya
+            //for foreignkey niya ang Proudct is parent then ang categories kay mga anak
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
         });
     }
