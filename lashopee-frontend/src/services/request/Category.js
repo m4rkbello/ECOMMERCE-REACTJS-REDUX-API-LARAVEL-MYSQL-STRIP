@@ -11,5 +11,8 @@ CategoryRequest.getAllCategories = (params) =>{
     }); 
 };
 
+
+
+
 export default CategoryRequest;
 

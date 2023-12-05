@@ -1,58 +1,51 @@
 import React, { useEffect } from "react";
-import { connect } from "react-redux"; 
-import CardCategory from "../../components/category/CategoryCard";
+import { connect } from "react-redux";
+import CardCategory from '../../components/category/CategoryCard'
 import { useDocumentTitle } from "../../hooks/useDocumentTitle";
 import CategoryRequest from "../../services/request/Category";
 import { setCategories } from "../../redux/actions";
 import useLoading from "../../hooks/useLoading";
 
+const Landing = (props) => {
+  const { title, setCategories, categories } = props;
+  const [Loading, withLoading] = useLoading();
+  useDocumentTitle(title);
 
-const Landing = props => {
-
-    const{title, setCategories, categories} = props;
-    const [Loading, withLoading] = useLoading();
-    useDocumentTitle(title);
-
-    const getCategories = async () => {
-        try{
-            const category = await withLoading(CategoryRequest.getAllCategories());
-            console.log(categories);
-            console.log(category);
-            console.log(props);
-            setCategories(category?.data);
-        }catch(error){
-            console.log(error)
-        }
+  const getCategories = async () => {
+    try {
+      const category = await withLoading(CategoryRequest.getAllCategories());
+      setCategories(category?.data);
+    } catch (error) {
+      console.log(error);
     }
+  };
 
-    useEffect(() => {
-        getCategories();
-    }, []);
+  useEffect(() => {
+    getCategories();
+  }, []);
 
-    return(
-        <div>
-        {
-            Loading
-            ? "Loading Categories and Products"
-            : categories?.length > 0
-            ? categories?.map(category => (
-                <CardCategory key={category?.id} category={category} />
-            ))
-            :
-            !Loading && <h4>No Category Available!</h4> 
-        }
-        </div>
-    );
+  return (
+    <div>
+      {Loading ? (
+        "Loading Categories and Products"
+      ) : categories?.length > 0 ? (
+        categories.map((category) => (
+          <CardCategory key={category?.id} category={category} />
+        ))
+      ) : (
+        !Loading && <h4>No Category Available!</h4>
+      )}
+    </div>
+  );
 };
 
-const mapStateToProps = ({category}) => {
-    const { categories } = category;
-    return { categories }
-}
+const mapStateToProps = ({ category }) => {
+  const { categories } = category;
+  return { categories };
+};
 
 const mapDispatchToProps = {
-    setCategories
-}
+  setCategories,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Landing);
-
