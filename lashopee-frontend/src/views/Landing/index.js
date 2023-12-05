@@ -16,9 +16,9 @@ const Landing = props => {
     const getCategories = async () => {
         try{
             const category = await withLoading(CategoryRequest.getAllCategories());
-            // console.log(categories);
+            console.log(categories);
             console.log(category);
-            // console.log(props);
+            console.log(props);
             setCategories(category?.data);
         }catch(error){
             console.log(error)
@@ -30,7 +30,18 @@ const Landing = props => {
     }, []);
 
     return(
-        <CardCategory />
+        <div>
+        {
+            Loading
+            ? "Loading Categories and Products"
+            : categories?.length > 0
+            ? categories?.map(category => (
+                <CardCategory key={category?.id} category={category} />
+            ))
+            :
+            !Loading && <h4>No Category Available!</h4> 
+        }
+        </div>
     );
 };
 
