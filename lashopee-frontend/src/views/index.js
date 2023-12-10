@@ -16,10 +16,10 @@ const Views = () => {
         <Header />
             <div className="category my-4 container">
                 <Routes>
-              
                 <Route
                     path="/" 
-                    element={<Landing title="Landing Page" />}  
+                    element={<Landing 
+                    title="Landing Page" />}  
                 />
                 <Route
                     path="/cart" 
@@ -27,25 +27,19 @@ const Views = () => {
                 />
                 <Route
                     path="/category/:id" 
-                    element={<Category title="CATEGORY DETAIL PAGE" />}  
+                    element={<Category 
+                    title="CATEGORY DETAIL PAGE" />}  
                 />
-            
-
                 <Route
-                path="/product/:1" 
-                element={<Product title="PRODUCT DETAIL PAGE" />}  
+                    path="/product/:1" 
+                    element={<Product 
+                    title="PRODUCT DETAIL PAGE" />}  
                  />
-          
-              
-                    
-                    <Route
+                <Route
                     path="/error" 
-                    element={<NotFound title="ERROR PAGE" />}  
+                    element={<NotFound
+                    title="ERROR PAGE" />}  
                 />
-
-     
-         
-       
                 </Routes>
             </div>
         </div>
