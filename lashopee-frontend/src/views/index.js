@@ -5,8 +5,9 @@ import CardCategory from "../components/category/CategoryCard";
 import { Route, Routes } from 'react-router-dom'
 import Landing from "./Landing";
 import Cart from "./Cart";
-import Category from './Category';
-
+import CategoryDetail from './Category';
+import ProductDetail from './Product';
+import Errors from "./NotFound";
 
 
 const Views = () => {
@@ -25,9 +26,19 @@ const Views = () => {
                     element={<Cart title="CART PAGE" />}  
                 />
                 <Route
-                    path="/category" 
-                    element={<Category title="CATEGORY PAGE" />}  
+                    path="/category/:id" 
+                    element={<CategoryDetail title="CATEGORY DETAIL PAGE" />}  
                 />
+                <Route
+                path="/product/:id" 
+                element={<ProductDetail title="PRODUCT DETAIL PAGE" />}  
+            />
+            <Route
+            path="/error" 
+            element={<Errors title="ERROR PAGE" />}  
+        />
+
+     
          
        
                 </Routes>
