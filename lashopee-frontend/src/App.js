@@ -1,18 +1,14 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; // Fix: import Route instead of Routes
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Views from './views';
 import Cart from './views/Cart';
 import CategoryDetail from './views/Category';
-
+import ProductDetail from './views/Product';
 import NotFound from './views/NotFound';
-
-// import ProductDetail from './views/Product';
-
-
 import { Provider } from 'react-redux';
 import store from './redux/store/Index';
-
-
+import Header from './components/shared/Header';
+import Landing from './views/Landing';
 
 
 
@@ -21,14 +17,14 @@ function App() {
     <div className="App">
       <Provider store={store}>
         <Router>
-        
+      
           <Routes>
-            <Route exact path="/" element={<Views />} />
-            <Route exact path="/cart" element={<Cart />} />
-            <Route exact path="/category/:id" element={<CategoryDetail />} />
-    
-            <Route exact path="/error" element={<NotFound />} />
-   
+            {/* Change the path from "/" to "/*" */}
+            <Route path="/" element={<Views />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/category/:id" element={<CategoryDetail />} />
+            <Route path="/product/:id" element={<ProductDetail />} />
+            <Route path="/error" element={<NotFound />} />
           </Routes>
         </Router>
       </Provider>

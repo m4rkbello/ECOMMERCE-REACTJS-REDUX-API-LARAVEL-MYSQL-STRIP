@@ -2,20 +2,21 @@ import React from "react";
 import Header from "../components/shared/Header";
 //not use
 import CardCategory from "../components/category/CategoryCard";
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, Router } from 'react-router-dom'
 import Landing from "./Landing";
 import Cart from "./Cart";
-import CategoryDetail from './Category';
+import Category from './Category';
+import Product from './Product';
 import NotFound from "./NotFound";
 
 
 const Views = () => {
     return (
-        <>
-          <Header />
-           
+        <div>
+        <Header />
             <div className="category my-4 container">
                 <Routes>
+              
                 <Route
                     path="/" 
                     element={<Landing title="Landing Page" />}  
@@ -26,21 +27,28 @@ const Views = () => {
                 />
                 <Route
                     path="/category/:id" 
-                    element={<CategoryDetail title="CATEGORY DETAIL PAGE" />}  
+                    element={<Category title="CATEGORY DETAIL PAGE" />}  
                 />
-              
             
-            <Route
-            path="/error" 
-            element={<NotFound title="ERROR PAGE" />}  
-        />
+
+                <Route
+                path="/product/:1" 
+                element={<Product title="PRODUCT DETAIL PAGE" />}  
+                 />
+          
+              
+                    
+                    <Route
+                    path="/error" 
+                    element={<NotFound title="ERROR PAGE" />}  
+                />
 
      
          
        
                 </Routes>
             </div>
-        </>
+        </div>
     );
 };
 
