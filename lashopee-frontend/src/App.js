@@ -20,11 +20,8 @@ function App() {
       
           <Routes>
             {/* Change the path from "/" to "/*" */}
-            <Route path="/" element={<Views />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/category/:id" element={<CategoryDetail />} />
-            <Route path="/product/:id" element={<ProductDetail />} />
-            <Route path="/error" element={<NotFound />} />
+            <Route path="*" element={<Views />} />
+      
           </Routes>
         </Router>
       </Provider>
