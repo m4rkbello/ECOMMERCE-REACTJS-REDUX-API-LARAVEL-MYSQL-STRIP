@@ -6,8 +6,7 @@ import { Route, Routes } from 'react-router-dom'
 import Landing from "./Landing";
 import Cart from "./Cart";
 import CategoryDetail from './Category';
-import ProductDetail from './Product';
-import Errors from "./NotFound";
+import NotFound from "./NotFound";
 
 
 const Views = () => {
@@ -29,13 +28,11 @@ const Views = () => {
                     path="/category/:id" 
                     element={<CategoryDetail title="CATEGORY DETAIL PAGE" />}  
                 />
-                <Route
-                path="/product/:id" 
-                element={<ProductDetail title="PRODUCT DETAIL PAGE" />}  
-            />
+              
+            
             <Route
             path="/error" 
-            element={<Errors title="ERROR PAGE" />}  
+            element={<NotFound title="ERROR PAGE" />}  
         />
 
      
