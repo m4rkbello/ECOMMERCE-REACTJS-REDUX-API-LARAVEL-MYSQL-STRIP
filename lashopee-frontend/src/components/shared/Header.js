@@ -14,7 +14,7 @@ const Header = props => {
           <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
             <ul className="navbar-nav ms-auto">
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="#">cart</a>
+                <Link to="/cart" className="nav-link active" aria-current="page" href="#">cart</Link>
               </li>
             </ul>
           </div>
