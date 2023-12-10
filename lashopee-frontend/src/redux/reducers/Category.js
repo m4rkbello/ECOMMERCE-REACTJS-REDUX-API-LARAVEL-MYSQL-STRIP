@@ -1,8 +1,8 @@
-import { SAVE_CATEGORIES } from "../constant/Category";
+import { SAVE_CATEGORIES, SAVE_CATEGORY } from "../constant/Category";
 
 const initialState = {
-    categories: []
-
+    categories: [],
+    currentCategory: null,
 };
 
 const Category = (state = initialState, action) => {
@@ -11,6 +11,11 @@ const Category = (state = initialState, action) => {
             return {
                 ...state,
                 categories: action.payload
+            };
+        case SAVE_CATEGORY:
+            return {
+                ...state,
+                currentCategory: action.payload
             };
             default:
             return state;

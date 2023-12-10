@@ -12,6 +12,12 @@ CategoryRequest.getAllCategories = (params) =>{
 };
 
 
+CategoryRequest.getAcategory = (id) => {
+    return fetch({
+        url: `$(category)/${id}`,
+        method:"get"
+    })
+}
 
 
 export default CategoryRequest;
